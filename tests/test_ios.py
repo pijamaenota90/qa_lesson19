@@ -15,3 +15,7 @@ def test_main_screen(ios_management):
     with allure.step("Кликнуть на Local Testing"):
         browser.element((AppiumBy.XPATH, "//XCUIElementTypeTabBar//XCUIElementTypeButton[3]")).click()
         attach_screenshot()
+
+    with allure.step('Прикрепить видео'):
+        session_id = browser.driver.session_id
+        attach_browser_stack_video(session_id, 'app-')

@@ -1,7 +1,8 @@
 import allure
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import browser, have
-from utils.attach import attach_screenshot
+from utils.attach import attach_screenshot, attach_browser_stack_video
+
 
 @allure.title('Проверка поиска статьи в Википедии')
 def test_android_search(android_management):
@@ -16,3 +17,7 @@ def test_android_search(android_management):
         results.should(have.size_greater_than(0))
         results.first.should(have.text('Moscow'))
         attach_screenshot()
+
+    with allure.step('Прикрепить видео'):
+        session_id = browser.driver.session_id
+        attach_browser_stack_video(session_id, 'app-')
